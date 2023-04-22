@@ -25,10 +25,11 @@ public class LectionService {
 
     //update
     public void addUserToLection(Long id,String email){
+
         Lection lection = lectionRepository.getReferenceById(id);
         String emails = lection.getEmails();
         String emailToAdd = ","+email;
-        if (emails.length()<1){
+        if (emails==null){
             emails = email;
         }else {
             emails += emailToAdd;
@@ -40,5 +41,11 @@ public class LectionService {
     //delete
     public void deleteLection(Long id){
         lectionRepository.deleteById(id);
+    }
+
+
+    public List<String> emailsOfStudentsOnLection(Long id){
+        List<String> emails = List.of(lectionRepository.getReferenceById(id).getEmails().split(","));
+        return emails;
     }
 }
