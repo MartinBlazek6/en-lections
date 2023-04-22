@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Enlections</title>
 </head>
+
 <body>
+<h1>All Lections</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Level</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="lection : ${lections}">
+        <td th:text="${lection.lectionId}"></td>
+        <td th:text="${lection.title}"></td>
+        <td th:text="${lection.level}"></td>
+    </tr>
+    </tbody>
+</table>
 
-<input type="button">
-<img src="https://i.ytimg.com/vi/eksZLqnUes8/maxresdefault.jpg" alt="ukradnuty obrazok" width="500" height="600">
+<h2>Create Lection</h2>
+<form method="POST" action="/createLection">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+    <br>
+    <label for="level">Level:</label>
+    <input type="text" id="level" name="level" required>
+    <br>
+    <input type="submit" value="Create">
+</form>
 
+<h2>Add Student to Lection</h2>
+<form method="POST" action="/addStudentToLection">
+    <label for="studentEmail">Student Email:</label>
+    <input type="email" id="studentEmail" name="studentEmail" required>
+    <br>
+    <label for="lectionId">Lection ID:</label>
+    <input type="number" id="lectionId" name="lectionId" required>
+    <br>
+    <input type="submit" value="Add">
+</form>
 </body>
+
 </html>
